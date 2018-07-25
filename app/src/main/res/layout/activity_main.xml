@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="onClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="model"
+            type="com.billy.websocket.model.Model" />
+
+
+    </data>
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:flexDirection="row"
+        app:flexWrap="wrap"
+        tools:context="com.billy.websocket.MainActivity">
+
+
+        <EditText
+            android:id="@+id/edittext"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:onClick="@{onClick}"
+            android:text="发送"
+            app:layout_wrapBefore="true" />
+
+        <Button
+            android:id="@+id/button_closed"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:onClick="@{onClick}"
+            android:text="断开"
+             />
+
+
+        <Button
+            android:id="@+id/button_return"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:onClick="@{onClick}"
+            android:text="重连"
+            />
+
+        <TextView
+            android:id="@+id/textview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@{model.content}"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_flexGrow="1"
+            app:layout_wrapBefore="true" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+</layout>

@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     };
 
     private ExecutorService mExecutorService;
+    private Handler mHandler;
 
 
     @Override
@@ -86,7 +87,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onClose(int code, String reason, boolean remote) {
                         Log.d("picher_log", "通道关闭,code:" + code + ",reason:" + reason + ",remote:" + remote);
-                        new Handler(getMainLooper()).postDelayed(mRunnable, 1000);
+                        if (mHandler == null) {
+                            mHandler = new Handler(getMainLooper());
+                        }
+                        mHandler.postDelayed(mRunnable, 1000);
                     }
 
                     @Override
@@ -127,6 +131,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (mSocketClient != null) {
             mSocketClient.close();
             mSocketClient = null;
+        }
+        if (mHandler!=null){
+            mHandler.removeCallbacks(mRunnable);
         }
     }
 

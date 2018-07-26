@@ -1,5 +1,6 @@
 package com.billy.websocket;
 
+import android.content.Intent;
 import android.databinding.Bindable;
 import android.databinding.DataBindingUtil;
 import android.databinding.Observable;
@@ -140,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.button) {
+            startActivity(new Intent(this,SecondActivity.class));
             if (mSocketClient.isOpen()) {
                 mSocketClient.send(mBinding.edittext.getText().toString());
             }
